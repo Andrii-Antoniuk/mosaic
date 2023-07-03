@@ -1,6 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
+/**
+ * This gets the folder path of the package json
+ */
 const getPackagePath = (packageName, context = process.cwd()) => {
     const possibleRelativePath = path.join(
         process.cwd(),
@@ -11,6 +14,10 @@ const getPackagePath = (packageName, context = process.cwd()) => {
     const isPathReference = fs.existsSync(possibleRelativePath);
 
     if (isPathReference) {
+        /**
+         * @example
+         * path.join(/my/folder/here/package.json, '..') will result in /my/folder/here/
+         */
         return path.join(possibleRelativePath, '..');
     }
 

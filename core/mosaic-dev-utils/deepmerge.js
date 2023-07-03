@@ -15,11 +15,13 @@ function deepmerge(
         const sourceValue = source[key];
 
         if (Array.isArray(targetValue) && Array.isArray(sourceValue)) {
+            //! Arrays will be concatenated, ok
             targetCopy[key] = targetValue.concat(sourceValue);
         } else if (
             isObject(targetValue)
           && isObject(sourceValue)
         ) {
+            //! Recursive crap
             targetCopy[key] = deepmerge(
                 { ...targetValue },
                 sourceValue

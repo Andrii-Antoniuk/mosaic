@@ -1,6 +1,16 @@
+// !DONE: Investigate logger
 const logger = require('@tilework/mosaic-dev-utils/logger');
+// !DONE: Investigate getPackageJson
 const { getPackageJson } = require('@tilework/mosaic-dev-utils/package-json');
+/**
+ * !DONE: Investigate getPackagePath
+ * ? Why using both named and default exports?
+ */
 const getPackagePath = require('@tilework/mosaic-dev-utils/package-path');
+
+/**
+ * TODO: Investigate getMosaicPath
+ */
 const { getMosaicConfig } = require('./mosaic-config');
 
 const getParentTheme = (pathname) => {
@@ -50,8 +60,8 @@ const getParentThemeSources = () => {
             // TODO: fallback to package name
 
             logger.error(
-                `The parent theme registered in package ${ logger.style.misc(name) } is invalid.`,
-                `The required field ${ logger.style.code(`${ fieldName }.themeAlias`) } is missing in ${ logger.style.file('package.json') }`
+                `The parent theme registered in package ${logger.style.misc(name)} is invalid.`,
+                `The required field ${logger.style.code(`${fieldName}.themeAlias`)} is missing in ${logger.style.file('package.json')}`
             );
 
             process.exit(1);
@@ -65,10 +75,10 @@ const getParentThemeSources = () => {
             } = getPackageJson(acc[themeAlias]);
 
             logger.error(
-                `The parent theme registered in package ${ logger.style.misc(name) } is invalid.`,
-                `The required field ${ logger.style.code(`${ fieldName }.themeName`) } contains invalid value.`,
-                `The theme with the name ${ logger.style.misc(themeAlias) } already exist.`,
-                `It was previously declared in the ${ logger.style.misc(sameNamePackage) } package.`
+                `The parent theme registered in package ${logger.style.misc(name)} is invalid.`,
+                `The required field ${logger.style.code(`${fieldName}.themeName`)} contains invalid value.`,
+                `The theme with the name ${logger.style.misc(themeAlias)} already exist.`,
+                `It was previously declared in the ${logger.style.misc(sameNamePackage)} package.`
             );
 
             process.exit(1);

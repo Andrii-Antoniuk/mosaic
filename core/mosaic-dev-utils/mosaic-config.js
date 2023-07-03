@@ -1,6 +1,9 @@
+// !DONE: Investigate getPackageJson
 const { getPackageJson } = require('@tilework/mosaic-dev-utils/package-json');
+// !DONE: Just deep merge as it says
 const { deepmerge } = require('./deepmerge');
 
+// It is possible to define this config at least, cool.
 const defaultConfig = {
     sourceDirectories: [
         'src',
@@ -8,6 +11,12 @@ const defaultConfig = {
     ]
 };
 
+/**
+ * This resolves mosaic config
+ * Interesting what types of pathname could be
+ * @param pathname path to a directory with package.json or package.json object
+ * Answer was in d.ts
+ */
 const getMosaicConfig = (pathname, context = process.cwd()) => {
     const packageJson = typeof pathname === 'string'
         ? getPackageJson(pathname, context)

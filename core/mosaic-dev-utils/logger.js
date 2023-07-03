@@ -5,8 +5,9 @@ const clearConsole = require('react-dev-utils/clearConsole');
 
 const logWithBanner = (banner, ...args) => {
     if (args.length > 1) {
-        console.log(`\n${ banner }\n\n`, ...args.map((arg) => `    ${arg}\n`));
+        console.log(`\n${banner}\n\n`, ...args.map((arg) => `    ${arg}\n`));
     } else {
+        // ? I don't understand why do we need to have a spread here
         console.log(banner, ...args);
     }
 };
@@ -28,3 +29,8 @@ module.exports = {
     warn: logWithBanner.bind(this, chalk.bgKeyword('orange').black('WARNING!')),
     note: logWithBanner.bind(this, chalk.bgGreen.black('NOTE!'))
 };
+
+/**
+ * Quite simple file.
+ * Uses chalk to format colors and stuff
+ */
