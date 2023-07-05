@@ -9,10 +9,12 @@ const { getPackageJson } = require('@tilework/mosaic-dev-utils/package-json');
 const getPackagePath = require('@tilework/mosaic-dev-utils/package-path');
 
 /**
- * TODO: Investigate getMosaicPath
+ * !DONE: Investigate getMosaicPath
+ * ? Why both package and relative resolution???
  */
 const { getMosaicConfig } = require('./mosaic-config');
 
+// get parent theme pachage name
 const getParentTheme = (pathname) => {
     const { parentTheme } = getMosaicConfig(pathname);
 
@@ -20,20 +22,23 @@ const getParentTheme = (pathname) => {
 };
 
 const getParentThemePaths = (pathname = process.cwd(), rootTheme = pathname) => {
+    // parent theme package name 
     const parentThemePackage = getParentTheme(pathname);
 
     if (!parentThemePackage) {
         return [];
     }
-
+    
     const parentThemePathname = getPackagePath(parentThemePackage, rootTheme);
 
     return [
         parentThemePathname,
+        // Recursion, checks for every parent theme
         ...getParentThemePaths(parentThemePathname, rootTheme)
     ];
 };
 
+// Returns list of pathnames of themes
 const getParentThemeSources = () => {
     const parentThemeList = getParentThemePaths();
 
