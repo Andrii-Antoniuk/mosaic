@@ -1,12 +1,18 @@
 const path = require("path");
-// TODO: Investigate getParentThemePaths
+// !DONE: Investigate getParentThemePaths
 const {
     getParentThemePaths
 } = require("@tilework/mosaic-dev-utils/parent-theme");
+// !DONE: Investigate getMosaicConfig
 const { getMosaicConfig } = require("@tilework/mosaic-dev-utils/mosaic-config");
+/**
+ *  !DONE: Investigate extensions 
+ *  Uses deprecated package under the hood.
+ */
 const extensions = require("@tilework/mosaic-dev-utils/extensions");
 
 const { sourceDirectories = [] } = getMosaicConfig(process.cwd());
+// !TODO: I believe using spread operator here could lead to some performance problems.
 
 const allowedPaths = [
     ...getParentThemePaths(),
@@ -113,6 +119,8 @@ const removeNamespaceFromPath = (path, namespace) => {
 /**
  * If a constructor exists for the class {path}
  * This adds a super() call on top of it
+ * 
+ * IDK why this is needed.
  */
 const addSuperToConstructor = (path, types) => {
     const constructor = path
@@ -197,7 +205,9 @@ module.exports = (options) => {
                     )
                 );
             },
-
+            // ? Why do we need this is if we don't support variables?
+            // Is it for static members of class?
+            // I dont understand
             VariableDeclaration: (path, state) => {
                 if (!isMustProcessNamespace(state)) {
                     return;

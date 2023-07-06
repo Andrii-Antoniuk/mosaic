@@ -1,9 +1,15 @@
+// !DONE: Investigate getMosaicConfig
 const { getMosaicConfig } = require('./mosaic-config');
+// !DONE: Investigate getPackageJson
 const { getPackageJson } = require('./package-json');
+// !DONE: Investigate getPackagePath
 const getPackagePath = require('./package-path');
+// !DONE
 const logger = require('./logger');
+// !DONE Npm package for memoization. Ok.
 const memoize = require('memoizee');
 const path = require('path');
+// !DONE: Dummy check for yarn ver
 const shouldUseYarn = require('./should-use-yarn');
 const fs = require('fs');
 
