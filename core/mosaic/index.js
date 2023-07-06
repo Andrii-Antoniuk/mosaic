@@ -2,7 +2,7 @@
     no-console,
     max-classes-per-file
 */
-
+// Symbols and empty class for having a mock
 import { cacheIdentityKey, EmptyBase, extensible } from './lib/extensible/constants';
 import generateApplyHandler from './lib/handlers/apply';
 import generateConstructHandler from './lib/handlers/construct';

@@ -16,6 +16,8 @@ class PluginStorage {
     addPlugins(importArray) {
         const newPlugins = generateConfig(importArray);
 
+
+        // ?So is it array or an object??
         if (!this.plugins) {
             this.plugins = {};
         }
